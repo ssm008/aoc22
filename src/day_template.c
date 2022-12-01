@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-#include <string.h>
+#include "aocutils.h"
 
 #define MAX_INPUT_LENGTH 3000
 #define MAX_RET_STR_LEN 100
@@ -38,17 +35,17 @@ int main(int argc, char *argv[]) {
 	clock_t timer = clock();
 	PART1 part1_solution = part1(inputFile);
 	timer = clock() - timer;
-        printf("\tPart 1 solution: %s (%f ms)\n", part1_solution.text,
-               (double)timer / CLOCKS_PER_SEC * 1000);
+  printf("\tPart 1 solution: %s (%d µs)\n", part1_solution.text,
+         (int)((double)timer / CLOCKS_PER_SEC * 1000000));
 
-        rewind(inputFile);
+  rewind(inputFile);
 	
 	timer = clock();
 	PART2 part2_solution = part2(inputFile);
 	timer = clock() - timer;
-        printf("\tPart 2 solution: %s (%f ms)\n", part2_solution.text,
-               (double)timer / CLOCKS_PER_SEC * 1000);
+  printf("\tPart 2 solution: %s (%d µs)\n", part2_solution.text,
+         (int)((double)timer / CLOCKS_PER_SEC * 1000000));
 
-        fclose(inputFile);
+  fclose(inputFile);
 }
 
