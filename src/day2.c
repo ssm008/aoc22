@@ -35,15 +35,24 @@ int part2(char *buf, int bufsize) {
 }
 
 int main(int argc, char *argv[]) {
+  clock_t timer = clock();
   FILE *inputFile = fopen(argv[1], "r");
-  printf("Day 2\n");
+  int bufsize = 0;
+
   fseek(inputFile, 0, SEEK_END);
-  int bufsize = ftell(inputFile);
+  bufsize = ftell(inputFile);
   rewind(inputFile);
+
   char *buf = malloc(bufsize + 1);
   fread(buf, 1, bufsize, inputFile);
+  fclose(inputFile);
 
-  clock_t timer = clock();
+  printf("Day 2\n");
+  timer = clock() - timer;
+  printf("\tBuffering input file: %d bytes in %d µs\n", bufsize,
+         (int)((double)timer / CLOCKS_PER_SEC * 1000000));
+
+  timer = clock();
   int part1_solution = part1(buf, bufsize);
   timer = clock() - timer;
   printf("\tPart 1 solution: %d (%d µs)\n", part1_solution,
@@ -58,6 +67,4 @@ int main(int argc, char *argv[]) {
          (int)((double)timer / CLOCKS_PER_SEC * 1000000));
 
   free(buf);
-  fclose(inputFile);
 }
-
