@@ -17,34 +17,34 @@ int calc_score2(char they, char you)
   return 6 * (you == 'Z') + 3 * (you == 'Y') + move + 1;
 }
 
-int part1(FILE *inputFile)
-{
-  char s[5] = {0};
+int part1(char *buf, int bufsize) {
   int score = 0;
-  while (fgets(s, 5, inputFile) != NULL) {
-    score += calc_score1(s[0], s[2]);
+  for (int bol = 0; bol < bufsize; bol += 4) {
+    score += calc_score1(buf[bol], buf[bol + 2]);
   }
   return score;
 }
 
-
-int part2(FILE *inputFile)
-{
-  char s[5] = {0};
+int part2(char *buf, int bufsize) {
   int score = 0;
-  while (fgets(s, 5, inputFile) != NULL) {
-    score += calc_score2(s[0], s[2]);
+  for (int bol = 0; bol < bufsize; bol += 4) {
+    score += calc_score2(buf[bol], buf[bol + 2]);
   }
+
   return score;
 }
-
 
 int main(int argc, char *argv[]) {
   FILE *inputFile = fopen(argv[1], "r");
   printf("Day 2\n");
+  fseek(inputFile, 0, SEEK_END);
+  int bufsize = ftell(inputFile);
+  rewind(inputFile);
+  char *buf = malloc(bufsize + 1);
+  fread(buf, 1, bufsize, inputFile);
 
   clock_t timer = clock();
-  int part1_solution = part1(inputFile);
+  int part1_solution = part1(buf, bufsize);
   timer = clock() - timer;
   printf("\tPart 1 solution: %d (%d µs)\n", part1_solution,
          (int)((double)timer / CLOCKS_PER_SEC * 1000000));
@@ -52,11 +52,12 @@ int main(int argc, char *argv[]) {
   rewind(inputFile);
 
   timer = clock();
-  int part2_solution = part2(inputFile);
+  int part2_solution = part2(buf, bufsize);
   timer = clock() - timer;
   printf("\tPart 2 solution: %d (%d µs)\n", part2_solution,
          (int)((double)timer / CLOCKS_PER_SEC * 1000000));
 
+  free(buf);
   fclose(inputFile);
 }
 

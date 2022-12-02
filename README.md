@@ -10,4 +10,7 @@ Day 1
 Day 2
 	Part 1 solution: 13009 (51 µs)
 	Part 2 solution: 10398 (41 µs)
+Day 2 - optimized
+	Part 1 solution: 13009 (5 µs)
+	Part 2 solution: 10398 (11 µs)
 ```
