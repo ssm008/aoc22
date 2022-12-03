@@ -16,4 +16,9 @@ Day 2 - optimized
 	Buffering input file: 10000 bytes in 39 µs
 	Part 1 solution: 13009 (5 µs)
 	Part 2 solution: 10398 (12 µs)
+
+Day 3
+	Buffering input file: 9678 bytes in 42 µs
+	Part 1 solution: 7742 (22 µs)
+	Part 2 solution: 2276 (33 µs)
 ```
