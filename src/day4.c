@@ -51,10 +51,7 @@ int part2(char *buf, int bufsize) {
 
   while (s.bos < buf + bufsize) {
     s.bos = sparse(&s);
-    if ((s.limits[0] >= s.limits[2] && s.limits[0] <= s.limits[3]) ||
-        (s.limits[2] >= s.limits[0] && s.limits[2] <= s.limits[1]) ||
-        (s.limits[1] >= s.limits[2] && s.limits[1] <= s.limits[3]) ||
-        (s.limits[3] >= s.limits[0] && s.limits[3] <= s.limits[1])) {
+    if (!(s.limits[0] > s.limits[3] || s.limits[1] < s.limits[2])) {
       total_overlaps++;
     }
   }
