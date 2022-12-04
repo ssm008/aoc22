@@ -1,43 +1,53 @@
 #include "aocutils.h"
 
+enum section_limits {
+  ELF1_START = 0,
+  ELF1_END = 1,
+  ELF2_START = 2,
+  ELF2_END = 3,
+  NUM_OF_LIMITS
+};
+
 struct section_parse {
-  char *bos;
-  int limits[4];
+  char *line_start;
+  int limits[NUM_OF_LIMITS];
 };
 
 char *
 sparse(struct section_parse *sp) {
   char c;
   int n = 0;
-  int elf = 0;
+  int limit = 0;
 
   while (1) {
-    c = sp->bos[0];
+    c = sp->line_start[0];
     if (c == '\n') {
-      sp->limits[elf] = n;
+      sp->limits[limit] = n;
       break;
     }
     if (c >= '0' && c <= '9') {
       n = n * 10 + c - '0';
     } else {
-      sp->limits[elf++] = n;
+      sp->limits[limit++] = n;
       n = 0;
     }
-    sp->bos++;
+    sp->line_start++;
   }
 
-  return sp->bos + 1;
+  return sp->line_start + 1;
 }
 
 int part1(char *buf, int bufsize) {
   int total_overlaps = 0;
   struct section_parse s = {0};
-  s.bos = buf;
+  s.line_start = buf;
 
-  while (s.bos < buf + bufsize) {
-    s.bos = sparse(&s);
-    if ((s.limits[0] >= s.limits[2] && s.limits[1] <= s.limits[3]) ||
-        (s.limits[2] >= s.limits[0] && s.limits[3] <= s.limits[1])) {
+  while (s.line_start < buf + bufsize) {
+    s.line_start = sparse(&s);
+    if ((s.limits[ELF1_START] >= s.limits[ELF2_START] &&
+         s.limits[ELF1_END] <= s.limits[ELF2_END]) ||
+        (s.limits[ELF2_START] >= s.limits[ELF1_START] &&
+         s.limits[ELF2_END] <= s.limits[ELF1_END])) {
       total_overlaps++;
     }
   }
@@ -47,11 +57,12 @@ int part1(char *buf, int bufsize) {
 int part2(char *buf, int bufsize) {
   int total_overlaps = 0;
   struct section_parse s = {0};
-  s.bos = buf;
+  s.line_start = buf;
 
-  while (s.bos < buf + bufsize) {
-    s.bos = sparse(&s);
-    if (!(s.limits[0] > s.limits[3] || s.limits[1] < s.limits[2])) {
+  while (s.line_start < buf + bufsize) {
+    s.line_start = sparse(&s);
+    if (!(s.limits[ELF1_START] > s.limits[ELF2_END] ||
+          s.limits[ELF1_END] < s.limits[ELF2_START])) {
       total_overlaps++;
     }
   }
