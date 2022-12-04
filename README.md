@@ -21,8 +21,9 @@ Day 3
 	Buffering input file: 9678 bytes in 42 µs
 	Part 1 solution: 7742 (22 µs)
 	Part 2 solution: 2276 (33 µs)
-```
+
 Day 4
-	Buffering input file: 11374 bytes in 57 µs
-	Part 1 solution: 431 (246 µs)
-	Part 2 solution: 823 (243 µs)
+	Buffering input file: 11374 bytes in 55 µs
+	Part 1 solution: 431 (22 µs)
+	Part 2 solution: 823 (20 µs)
+```
