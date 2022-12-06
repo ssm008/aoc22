@@ -26,4 +26,10 @@ Day 4
 	Buffering input file: 11374 bytes in 58 µs
 	Part 1 solution: 431 (22 µs)
 	Part 2 solution: 823 (16 µs)
+
+Day 5
+	Input file modified manually for initial stack
+	Buffering input file: 9716 bytes in 45 µs
+	Part 1 solution: RTGWZTHLD (16 µs)
+	Part 2 solution: STHGRZZFR (14 µs)
 ```

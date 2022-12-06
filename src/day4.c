@@ -44,10 +44,8 @@ int part1(char *buf, int bufsize) {
 
   while (s.line_start < buf + bufsize) {
     s.line_start = sparse(&s);
-    if ((s.limits[ELF1_START] >= s.limits[ELF2_START] &&
-         s.limits[ELF1_END] <= s.limits[ELF2_END]) ||
-        (s.limits[ELF2_START] >= s.limits[ELF1_START] &&
-         s.limits[ELF2_END] <= s.limits[ELF1_END])) {
+    if (((s.limits[ELF2_END] - s.limits[ELF1_END]) *
+         (s.limits[ELF1_START] - s.limits[ELF2_START])) >= 0) {
       total_overlaps++;
     }
   }
@@ -78,7 +76,7 @@ int main(int argc, char *argv[]) {
   bufsize = ftell(inputFile);
   rewind(inputFile);
 
-  char *buf = malloc(bufsize + 1);
+  char buf[14000];
   fread(buf, 1, bufsize, inputFile);
   fclose(inputFile);
 
@@ -101,5 +99,4 @@ int main(int argc, char *argv[]) {
   printf("\tPart 2 solution: %d (%d µs)\n", part2_solution,
          (int)((double)timer / CLOCKS_PER_SEC * 1000000));
 
-  free(buf);
 }
