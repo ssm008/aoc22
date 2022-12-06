@@ -32,4 +32,9 @@ Day 5
 	Buffering input file: 9716 bytes in 45 µs
 	Part 1 solution: RTGWZTHLD (16 µs)
 	Part 2 solution: STHGRZZFR (14 µs)
+
+Day 6
+	Buffering input file: 4096 bytes in 43 µs
+	Part 1 solution: 1343 (9 µs)
+	Part 2 solution: 2193 (22 µs)
 ```
