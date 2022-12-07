@@ -5,9 +5,10 @@ int part1(char *buf, int bufsize) {
   char *end = buf + bufsize;
   int start_of_packet_marker = 0;
   while (c <= end - 4) {
-    for (int i = 0; i < 4; i++) {
-      for (int k = i + 1; k < 4; k++) {
+    for (int i = 3; i >= 0; i--) {
+      for (int k = i - 1; k >= 0; k--) {
         if (*(c + i) == *(c + k)) {
+          c += k;
           goto next;
         }
       }
@@ -26,16 +27,17 @@ int part2(char *buf, int bufsize) {
   char *end = buf + bufsize;
   int start_of_message_marker = 0;
   while (c <= end - 14) {
-    for (int i = 0; i < 14; i++) {
-      for (int k = i + 1; k < 14; k++) {
+    for (int i = 13; i >= 0; i--) {
+      for (int k = i - 1; k >= 0; k--) {
         if (*(c + i) == *(c + k)) {
-          goto next;
+          c += k;
+          goto next2;
         }
       }
     }
     start_of_message_marker = (int)(c - buf) + 14;
     break;
-  next:
+  next2:
     c++;
   }
 
