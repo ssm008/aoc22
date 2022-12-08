@@ -13,8 +13,9 @@ int main(int argc, char *argv[]) {
   bufsize = ftell(inputFile);
   rewind(inputFile);
 
-  char *buf = malloc(bufsize + 1);
+  char buf[20000];
   fread(buf, 1, bufsize, inputFile);
+  buf[bufsize] = 0;
   fclose(inputFile);
 
   printf("Day #\n");
@@ -35,6 +36,4 @@ int main(int argc, char *argv[]) {
   timer = clock() - timer;
   printf("\tPart 2 solution: %d (%d µs)\n", part2_solution,
          (int)((double)timer / CLOCKS_PER_SEC * 1000000));
-
-  free(buf);
 }
