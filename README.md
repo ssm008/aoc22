@@ -37,4 +37,9 @@ Day 6
 	Buffering input file: 4096 bytes in 45 µs
 	Part 1 solution: 1343 (5 µs)
 	Part 2 solution: 2193 (6 µs)
+
+Day 8
+	Buffering input file: 9900 bytes in 52 µs
+	Part 1 solution: 1700 (63 µs)
+	Part 2 solution: 470596 (270 µs)
 ```
