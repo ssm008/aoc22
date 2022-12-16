@@ -29,8 +29,6 @@ int main(int argc, char *argv[]) {
   printf("\tPart 1 solution: %d (%d µs)\n", part1_solution,
          (int)((double)timer / CLOCKS_PER_SEC * 1000000));
 
-  rewind(inputFile);
-
   timer = clock();
   int part2_solution = part2(buf, bufsize);
   timer = clock() - timer;
