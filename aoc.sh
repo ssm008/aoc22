@@ -30,7 +30,7 @@ test_day() {
 }
 
 run_day() {
-	clang -O3 "${SRC_BASE_DIR}"/src/day"${day}".c -o "${SRC_BASE_DIR}"/bin/day"${day}"
+	clang -g -O3 "${SRC_BASE_DIR}"/src/day"${day}".c -o "${SRC_BASE_DIR}"/bin/day"${day}"
 	"${SRC_BASE_DIR}"/bin/day"${day}" "${SRC_BASE_DIR}"/input/day"${day}".input
 }
 

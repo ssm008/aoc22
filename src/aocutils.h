@@ -5,14 +5,31 @@
 #include <time.h>
 #include <string.h>
 
-unsigned int ato_ui(char* s)
-{
-    unsigned int ui = 0;
-    while (*s != '\0') {
-        ui = (ui*10) + (*s - '0');
-        ++s;
+/*Gets all numbers before newline, you make sure the ret buffer is big enough*/
+unsigned int getNumsOnLine(char *buf, int *ret, int *line_len) {
+  char *c = buf;
+  int cnt = 0;
+  int num = 0;
+  int parsing_num = 0;
+  while (*(c) != '\n') {
+    if (*c >= '0' && *c <= '9') {
+      parsing_num = 1;
+      num = num * 10 + (int)(*c - '0');
+    } else {
+      if (parsing_num) {
+        parsing_num = 0;
+        ret[cnt++] = num;
+        num = 0;
+      }
     }
-    return ui;
+    c++;
+  }
+  if (parsing_num) {
+    ret[cnt++] = num;
+  }
+  *line_len = (int)(c - buf) + 1;
+  return cnt;
 }
+
 
 #endif
