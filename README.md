@@ -60,7 +60,7 @@ Day 10
 	Part 2 solution: 0 (5 µs)
 
 Day 14
-	Buffering input file: 23971 bytes in 41 µs
-	Part 1 solution: 692 (-2147483648 µs) // stack overflow.. will fix it at some point
-	Part 2 solution: 31706 (161 µs)
+	Buffering input file: 23971 bytes in 56 µs
+	Part 1 solution: 692 (142 µs)
+	Part 2 solution: 31706 (217 µs)
 ```

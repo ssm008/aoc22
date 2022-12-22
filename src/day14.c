@@ -12,7 +12,7 @@ void setupgrid(char *buf, int bufsize) {
   char *c = buf;
   struct pos start;
   struct pos stop;
-  int numbers[50];
+  int numbers[70];
   int skip = 0;
   int nums = 0;
   int drow, dcol;
