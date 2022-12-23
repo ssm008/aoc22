@@ -146,9 +146,9 @@ int main(int argc, char *argv[]) {
          (int)((double)timer / CLOCKS_PER_SEC * 1000000));
 
   timer = clock();
-  int part1_solution = part1(buf, bufsize);
+  long part1_solution = part1(buf, bufsize);
   timer = clock() - timer;
-  printf("\tPart 1 solution: %d (%d µs)\n", part1_solution,
+  printf("\tPart 1 solution: %ld (%d µs)\n", part1_solution,
          (int)((double)timer / CLOCKS_PER_SEC * 1000000));
 
   timer = clock();
