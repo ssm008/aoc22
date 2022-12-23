@@ -38,7 +38,7 @@ long (*get_op(char o))(struct node *, struct node *) {
 }
 
 int get_id(char *name) {
-  return (name[0] << 24) + (name[1] << 16) + (name[2] << 8) + name[3];
+  return *((int *)name);
 }
 
 long part1(char *buf, int bufsize) {
