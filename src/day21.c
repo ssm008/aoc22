@@ -144,10 +144,10 @@ long part2(char *buf, int bufsize) {
   long l = left_path->op(left_path->left, left_path->right);
   long r = right_path->op(right_path->left, right_path->right);
   // get the derivative
-  humn->left += 1;
-  long d = l - left_path->op(left_path->left, left_path->right);
+  humn->left = (struct node *)((long)humn->left + 8);
+  // the +1 is just some tuning I did due to rounding errors in derivative calc.
+  long d = 1 + (l - left_path->op(left_path->left, left_path->right)) >> 3;
   long inc = 0;
-  // This is converging too slow, I have a bug here somewhere.
   while (l != r) {
     l = left_path->op(left_path->left, left_path->right);
     inc = (l - r) / d;

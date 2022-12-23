@@ -65,7 +65,7 @@ Day 14
 	Part 2 solution: 31706 (217 µs)
 
 Day 21
-	Buffering input file: 38191 bytes in 46 µs
-	Part 1 solution: 145167969204648 (1924 µs)
-	Part 2 solution: 3330805295850 (5951 µs)
+	Buffering input file: 38191 bytes in 52 µs
+	Part 1 solution: 145167969204648 (1922 µs)
+	Part 2 solution: 3330805295851 (148 µs)
 ```
