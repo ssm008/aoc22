@@ -41,11 +41,13 @@ int get_id(char *name) {
   return *((int *)name);
 }
 
+struct node monkeys[3000];
+int monkindex = 0;
+int nummonkeys = 0;
+struct node *root;
+
 long part1(char *buf, int bufsize) {
   char *c = buf;
-  struct node monkeys[3000];
-  int monkindex = 0;
-  int nummonkeys = 0;
   int id[3];
   long constant = 0;
   int i;
@@ -117,6 +119,7 @@ long part1(char *buf, int bufsize) {
   int rootid = get_id("root");
   for (i = 0; i < nummonkeys; i++) {
     if (monkeys[i].id == rootid) {
+      root = &monkeys[i];
       ret = monkeys[i].op(monkeys[i].left, monkeys[i].right);
     }
   }
@@ -124,7 +127,35 @@ long part1(char *buf, int bufsize) {
   return ret;
 }
 
-int part2(char *buf, int bufsize) { return 0; }
+long part2(char *buf, int bufsize) {
+  // find the humn
+  int humn_id = get_id("humn");
+  struct node *humn;
+  for (int i = 0; i < nummonkeys; i++) {
+    if (monkeys[i].id == humn_id) {
+      humn = &monkeys[i];
+      break;
+    }
+  }
+
+  // I did a quick experiment to find out that humn is on the left path.
+  struct node *left_path = root->left;
+  struct node *right_path = root->right;
+  long l = left_path->op(left_path->left, left_path->right);
+  long r = right_path->op(right_path->left, right_path->right);
+  // get the derivative
+  humn->left += 1;
+  long d = l - left_path->op(left_path->left, left_path->right);
+  long inc = 0;
+  // This is converging too slow, I have a bug here somewhere.
+  while (l != r) {
+    l = left_path->op(left_path->left, left_path->right);
+    inc = (l - r) / d;
+    humn->left = (long)humn->left + inc + 1;
+  }
+
+  return (long)humn->left - 1;
+}
 
 int main(int argc, char *argv[]) {
   clock_t timer = clock();
@@ -152,8 +183,8 @@ int main(int argc, char *argv[]) {
          (int)((double)timer / CLOCKS_PER_SEC * 1000000));
 
   timer = clock();
-  int part2_solution = part2(buf, bufsize);
+  long part2_solution = part2(buf, bufsize);
   timer = clock() - timer;
-  printf("\tPart 2 solution: %d (%d µs)\n", part2_solution,
+  printf("\tPart 2 solution: %ld (%d µs)\n", part2_solution,
          (int)((double)timer / CLOCKS_PER_SEC * 1000000));
 }
