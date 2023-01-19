@@ -1,9 +1,15 @@
 #ifndef AOCUTIL_H
 #define AOCUTIL_H
-#include <stdlib.h>
+#include <fcntl.h>
 #include <stdio.h>
-#include <time.h>
+#include <stdlib.h>
 #include <string.h>
+#include <sys/io.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <time.h>
+#include <unistd.h>
 
 /*Gets all numbers before newline, you make sure the ret buffer is big enough*/
 unsigned int getNumsOnLine(char *buf, int *ret, int *line_len) {
